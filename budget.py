@@ -60,9 +60,15 @@ class Category:
           return True
 
     def __str__(self):
+        """
+        Method creates a table of all operations in a particular category
+        with the total amount
+        """
+        # Center category name 
         title = self.name.center(30, "*")
         count = 0
         lines = []
+        # Get descriptions and amounts for each operation
         for amount in self.ledger:
             amount = self.ledger[count]["amount"]
             amount = format(amount, "2f")
@@ -74,9 +80,12 @@ class Category:
                 description = description.ljust(23)
             lines.append(description + amount)
             count += 1
+        # Get the table of spending
         each_line_print = "\n".join(lines)
+        # Get total amount
         total = format(self.total, ".2f")
         total = f"Total: {self.total}"
+        # Display the whole expanses with total amount in a table
         display_budget = title + "\n" + each_line_print + "\n" + total
         return display_budget
 
