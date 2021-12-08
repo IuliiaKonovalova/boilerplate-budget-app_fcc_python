@@ -16,7 +16,12 @@ class Category:
         })
 
     def withdraw(self, amount, description=None):
-
+      """
+      Checks whether the withdrawal is possible,
+      if withdraw is possible, it reduce total sum in a particular category
+      adds description of the operation if there are some.
+      If the total sum is less than required sum for withdrawal, returns False.
+      """
       if self.check_funds(amount):
           self.total -= amount
           if description == None:
