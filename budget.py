@@ -48,7 +48,16 @@ class Category:
                 "description": f'Transfer from {self.name}'
             })
             return True
-    
+            
+    def check_funds(self, amount):
+        fund = 0
+        n = len(self.ledger)
+        for i in range(n):
+            fund = fund + self.ledger[i]["amount"]
+        if amount > fund:
+            return False
+        else:
+          return True
 
 
 
