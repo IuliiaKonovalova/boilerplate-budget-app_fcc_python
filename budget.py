@@ -59,6 +59,25 @@ class Category:
         else:
           return True
 
+    def __str__(self):
+        title = self.name.center(30, "*")
+        count = 0
+        lines = []
+        for amount in self.ledger:
+            amount = self.ledger[count]["amount"]
+            amount = format(amount, "2f").rjust(7)
+            description = self.ledger[count]["description"]
+            if len(description) > 23:
+                description = description[23:]
+            else:
+                description = description.ljust(23)
+            lines.append(description + amount)
+            count += 1
+        each_line_print = "\n".join(lines)
+        total = format(self.total, "2f")
+        total_line = f'Total: {total}'
+        display_budget = title + "\n" + each_line_print + "\n" + total_line
+        return display_budget
 
 
 
