@@ -16,6 +16,7 @@ class Category:
         })
 
     def withdraw(self, amount, description=None):
+
       if self.check_funds(amount):
           self.total -= amount
           if description == None:
@@ -31,9 +32,19 @@ class Category:
           return False
 
     def get_balance(self):
+      """
+      Displays the total amount
+      """
       return self.total
 
     def transfer(self, amount, another_category):
+        """
+        Checks whether the transfer is possible,
+        if transfer is possible, it reduce total sum in a particular category
+        and adds transfer to the category where transfer is aimed,
+        adds description of the operation if there are some.
+        If the total sum is less than required sum for transfer, returns False.
+        """
         if self.check_funds(amount):
             self.total -= amount
             another_category.total += amount
