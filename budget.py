@@ -30,7 +30,8 @@ class Category:
             })
             return True
 
-    
+    def get_balance(self):
+      return self.total
 
 
 
