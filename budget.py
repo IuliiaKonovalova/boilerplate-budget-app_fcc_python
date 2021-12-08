@@ -16,27 +16,25 @@ class Category:
         })
 
     def withdraw(self, amount, description=None):
-        if amount > self.total:
-            return False
-        else:
-            self.total -= amount
-            if description == None:
-                self.description = ""
-            else:
-                self.description = description
-            self.ledger.append({
-                "amount": -amount,
-                "description": self.description
-            })
-            return True
+      if self.check_funds(amount):
+          self.total -= amount
+          if description == None:
+              self.description = ""
+          else:
+              self.description = description
+          self.ledger.append({
+              "amount": -amount,
+              "description": self.description
+          })
+          return True
+      else:
+          return False
 
     def get_balance(self):
       return self.total
 
     def transfer(self, amount, another_category):
-        if amount > self.total:
-            return False
-        else:
+        if self.check_funds(amount):
             self.total -= amount
             another_category += amount
             self.ledger.append({
@@ -48,7 +46,9 @@ class Category:
                 "description": f'Transfer from {self.name}'
             })
             return True
-            
+        else:
+            return False
+
     def check_funds(self, amount):
         fund = 0
         n = len(self.ledger)
