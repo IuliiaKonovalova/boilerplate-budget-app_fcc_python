@@ -33,6 +33,24 @@ class Category:
     def get_balance(self):
       return self.total
 
+    def transfer(self, amount, another_category):
+        if amount > self.total:
+            return False
+        else:
+            self.total -= amount
+            another_category += amount
+            self.ledger.append({
+                "amount": -amount,
+                "description": f'Transfer to {another_category}'
+            })
+            another_category.append({
+                "amount": amount,
+                "description": f'Transfer from {self.name}'
+            })
+            return True
+    
+
+
 
 
 
