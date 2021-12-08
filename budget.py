@@ -36,12 +36,12 @@ class Category:
     def transfer(self, amount, another_category):
         if self.check_funds(amount):
             self.total -= amount
-            another_category += amount
+            another_category.total += amount
             self.ledger.append({
                 "amount": -amount,
                 "description": f'Transfer to {another_category}'
             })
-            another_category.append({
+            another_category.ledger.append({
                 "amount": amount,
                 "description": f'Transfer from {self.name}'
             })
@@ -68,7 +68,7 @@ class Category:
             amount = format(amount, "2f").rjust(7)
             description = self.ledger[count]["description"]
             if len(description) > 23:
-                description = description[23:]
+                description = description[:24]
             else:
                 description = description.ljust(23)
             lines.append(description + amount)
@@ -78,13 +78,3 @@ class Category:
         total_line = f'Total: {total}'
         display_budget = title + "\n" + each_line_print + "\n" + total_line
         return display_budget
-
-
-
-
-
-
-
-
-
-# def create_spend_chart(categories):
