@@ -50,6 +50,9 @@ class Category:
             return False
 
     def check_funds(self, amount):
+        """
+        Checks whether the amount for transfer and withdraw are possible
+        """
         fund = 0
         n = len(self.ledger)
         for i in range(n):
