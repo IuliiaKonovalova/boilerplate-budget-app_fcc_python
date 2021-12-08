@@ -15,6 +15,21 @@ class Category:
             "description": self.description
         })
 
+    def withdraw(self, amount, description=None):
+        if amount > self.total:
+            return False
+        else:
+            self.total -= amount
+            if description == None:
+                self.description = ""
+            else:
+                self.description = description
+            self.ledger.append({
+                "amount": -amount,
+                "description": self.description
+            })
+            return True
+
     
 
 
