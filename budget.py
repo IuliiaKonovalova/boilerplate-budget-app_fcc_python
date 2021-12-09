@@ -159,8 +159,8 @@ def create_spend_chart(categories):
                 vertical_categories += " " + one_cat.name[height] + " "
             else:
               vertical_categories += " " * 3
-        vertical_categories += "\n"
-    chart += vertical_categories.rstrip() 
+        vertical_categories += " \n"
+    chart += vertical_categories.rstrip() + "  "
     chart_display = chart_title + "\n" + chart
     return chart_display
 
