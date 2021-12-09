@@ -149,6 +149,8 @@ def create_spend_chart(categories):
         chart += "\n"
     # Set the line after the chart content
     chart += " " * 4 + ("-" * 3) * len(list_of_categories) + "-" + "\n"
-    print(chart)
+    # Get the longest name in the categories
+    longest_name = max(len(name.name) for name in categories)
+    print(longest_name)
     
 
