@@ -1,4 +1,10 @@
 class Category:
+    """
+    The class instantiates objects based on different budget categories
+    like food, clothing, and entertainment.
+    Contain methods to allow deposit, withdrawal, transfer, get balance, and
+    check funds manipulations.
+    """
     def __init__(self, name):
         self.ledger = []
         self.name = name
