@@ -147,6 +147,8 @@ def create_spend_chart(categories):
             else:
                 chart += "   "
         chart += "\n"
-
+    # Set the line after the chart content
+    chart += " " * 4 + ("-" * 3) * len(list_of_categories) + "-" + "\n"
+    print(chart)
     
 
