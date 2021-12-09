@@ -5,6 +5,9 @@ class Category:
         self.total = 0
     
     def deposit(self, amount, description=None):
+        """
+        Adds new amount to the total sum and adds description if it is provided.
+        """
         self.total += amount
         if description == None:
             self.description = ""
