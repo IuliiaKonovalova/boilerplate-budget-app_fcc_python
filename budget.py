@@ -134,7 +134,7 @@ def create_spend_chart(categories):
         for action in category.ledger:
             if action["amount"] < 0:
                 withdrawn_amount -= action["amount"]
-                withdrawals.append(withdrawn_amount)
+        withdrawals.append(withdrawn_amount)
     # Get the percentage of spending for each withdrawal
     for num in range(len(withdrawals)):
         withdraw_percentage.append(withdrawals[num] / sum(withdrawals) * 100)
@@ -146,11 +146,22 @@ def create_spend_chart(categories):
                 chart += " o "
             else:
                 chart += "   "
-        chart += "\n"
+        chart += " \n"
     # Set the line after the chart content
     chart += " " * 4 + ("-" * 3) * len(list_of_categories) + "-" + "\n"
     # Get the longest name in the categories
-    longest_name = max(len(name.name) for name in categories)
-    print(longest_name)
-    
+    longest_name = max(len(one_cat.name) for one_cat in categories)
+    # Set the categories part of the chart
+    for height in range(longest_name):
+        vertical_categories += " " * 4
+        for one_cat in categories:
+            if height < len(one_cat.name):
+                vertical_categories += " " + one_cat.name[height] + " "
+            else:
+              vertical_categories += " " * 3
+        vertical_categories += "\n"
+    chart += vertical_categories.rstrip() 
+    chart_display = chart_title + "\n" + chart
+    return chart_display
+
 
