@@ -135,4 +135,18 @@ def create_spend_chart(categories):
             if action["amount"] < 0:
                 withdrawn_amount -= action["amount"]
                 withdrawals.append(withdrawn_amount)
+    # Get the percentage of spending for each withdrawal
+    for num in range(len(withdrawals)):
+        withdraw_percentage.append(withdrawals[num] / sum(withdrawals) * 100)
+    # Set the range and set the chart content
+    for percent in range(100, -10, -10):
+        chart =+ str(percent).rjust(3) + "|"
+        for num in withdraw_percentage:
+            if num >= percent:
+                chart += " o "
+            else:
+                chart += "   "
+        chart += "\n"
+
+    
 
