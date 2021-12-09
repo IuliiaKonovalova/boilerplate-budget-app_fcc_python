@@ -121,7 +121,18 @@ def create_spend_chart(categories):
     # Variables
     chart_title = "Percentage spent by category"
     chart = ""
-    categories = []
-    withdraws = []
+    list_of_categories = []
+    withdrawals = []
     withdraw_percentage = []
     vertical_categories = ""
+
+    # Iterate through the list of the categories and receive a data
+    # about the name and the amount of withdrawal
+    for category in categories:
+        list_of_categories.append(category.name)
+        withdrawn_amount = 0
+        for action in category.ledger:
+            if action["amount"] < 0:
+                withdrawn_amount -= action["amount"]
+                withdrawals.append(withdrawn_amount)
+
